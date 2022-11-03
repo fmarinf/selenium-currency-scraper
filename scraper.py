@@ -2,6 +2,7 @@ import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import pandas as pd
 
 CURRENCY_CLP_URL = 'https://www.x-rates.com/table/?from=CLP&amount=1'
 
@@ -55,3 +56,7 @@ if __name__ == "__main__":
     
   jsonStr = json.dumps(currency_data, indent=4)
   print(jsonStr)
+
+  print('Saving data in CSV format...')
+  currency_df = pd.DataFrame(currency_data)
+  currency_df.to_csv('currencies.csv', index=None)
